@@ -16,7 +16,7 @@ MODULE mod_seagrass_flux
     
     USE mod_param
     USE mod_input
-    USE mod_seagrass
+    !USE mod_seagrass
 
     implicit none
 
@@ -70,10 +70,13 @@ MODULE mod_seagrass_flux
     real(8) :: Lp_SAV
 
 
+
 CONTAINS
 
     SUBROUTINE initialize_seagrass_flux
 
+        theta_sav = 0.65d0
+        
         return
 
     END SUBROUTINE initialize_seagrass_flux
