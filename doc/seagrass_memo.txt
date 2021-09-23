@@ -1,0 +1,72 @@
+reef_ecosys内のモジュールと簡易的なmatlabコードへの反映
+
+結論：
+salinityをまず第一に考える為、水理モデルと海岸地下水の淡塩水境界分散モデル（Kakinuma et al, 1985）のみ入れ込む
+次に、Touchetteの膨圧などを入れる
+最後に、光合成、DO、DICなどを入れる
+ここまで入れたら、あとはfortranを覚え、reef_ecosysでやる
+
+
+考慮：
+
+mod_seagrass.F90
+	光合成（DIC、DO）pmax=55.81, pIk, p0
+	pmax*tanh(PFD/pIk)/3600
+	呼吸（DIC、DO）
+	有機物(13C)の生産
+	栄養塩の取り込み(NO3,NH4,PO4)
+	C:N:P=599:27:1 (Atkinson and Smith (1983))
+	
+mod_reef_hydro.F90
+	水理
+	
+mod_reef_ecosys3.F90
+	物質収支の微分方程式
+	
+mod_geochem.F90
+	densSWやpH_fromATCTなどの関数定義
+	☆CO2、O2のガス交換速度、流束密度
+	平衡定数	
+	
+mod_sedecosys.F90
+	土壌の拡散方程式
+	好気・嫌気呼吸
+	溶解
+	脱窒
+
+mod_foodweb6.F90
+	動物プランクトンの増殖、死亡
+	微生物環
+	窒化
+	
+mod_heat.F90
+	熱流束密度
+
+mod_macroalgae.F90
+	seagrassと同じ
+	
+mod_param.F90
+	nutrientsなどの初期値	
+
+mod_input.F90
+	初期データ読み込み
+	チャンバー条件や光条件（light and darkなど）
+	
+mod_output.F90
+	CSVファイルへの書き出し
+	
+	
+	
+地下水について、本当は考えなければならないこと：
+
+
+キーワード：
+汽水域　塩分分布
+塩水楔
+
+
+要素を表にまとめてみる
+河口からの距離：海水の塩分が低いことによる地下水湧出の抑制（特に干潮）
+汀線からの距離：単純な地下水の流速密度
+淡水レンズを考えて、間隙水の塩分一定（調査で全体的に海水より塩分低かったことからも）
+海水の移流のみを考える

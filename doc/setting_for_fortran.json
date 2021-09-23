@@ -1,0 +1,88 @@
+{
+    "python.pythonPath": "/Users/KobayashiYuki/anaconda3",
+    "workbench.iconTheme": "vscode-icons",
+    "C_Cpp.updateChannel": "Insiders",
+    "files.associations": {
+        "*.h": "cpp",
+        "*.F": "FortranFreeForm",
+        "*.f": "fortran_fixed-form"
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "fortran.linterExtraArgs": [],
+
+    "files.exclude": {
+        "/.git": true
+    },
+    "search.exclude": {
+        "/node_modules": true
+    },
+    "files.watcherExclude": {
+        "/node_modules/": true,
+        "/.git": true
+    },
+
+    "explicitFolding.rules": {
+        "FortranFreeForm": [
+            {
+                "beginRegex": "#if(?:n?def)?",
+                "middleRegex": "#el(?:se|if)",
+                "endRegex": "#endif"
+            },
+            {
+                "beginRegex":  "!!-!!--!",
+                "middleRegex": "!!-!-!-!",
+                "endRegex":    "!!-!--!!"
+            },
+            {
+                "beginRegex":  "!!Region",
+                "middleRegex": "!!MiddleRegion",
+                "endRegex":    "!!EndRegion"
+            },
+            {
+                "beginRegex": "#[\\s]*if defined",
+                "middleRegex": "#[\\s]*else",
+                "endRegex": "#[\\s]*endif"
+            },
+            {
+                "beginRegex": "#if defined",
+                "middleRegex": "#else",
+                "endRegex": "#endif"
+            },
+            {
+                "beginRegex":  "[\\s]*TYPE[\\s]*T_",
+                "endRegex":    "[\\s]*END[\\s]*TYPE[\\s]*T_"
+            },
+            {
+                "beginRegex": "MODULE mod_",
+                "middleRegex": "CONTAINS",
+                "endRegex": "END MODULE mod_"
+            },
+            {
+                "beginRegex": "SUBROUTINE",
+                "endRegex": "END SUBROUTINE"
+            },
+            {
+                "beginRegex": "subroutine",
+                "endRegex": "end subroutine"
+            },
+            {
+                "beginRegex": "function",
+                "endRegex": "end function"
+            }
+        ]
+    },
+
+    "maptz.regionfolder": {
+        "[FortranFreeForm]": {        
+            "defaultFoldStartRegex": "\\!--[\\s]*#region\\(collapsed\\)[\\s]*(.*)",
+
+            "foldEnd": "!-- #endregion --",
+            "foldEndRegex": "\\!--[\\s]*#endregion",
+            "foldStart": "!-- #region [NAME] --",
+            "foldStartRegex": "\\!--[\\s]*#region[\\s]*(.*)"
+        }
+    },
+    "editor.foldingStrategy": "auto"
+
+}
